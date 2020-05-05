@@ -5,6 +5,7 @@ import com.sandbox.hibernate.exceptions.CourseNotFoundException;
 import com.sandbox.hibernate.models.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,9 +33,10 @@ public class CourseServiceImpl implements CourseService {
         return courseDAO.findByTitle(title);
     }
 
+    @Transactional
     @Override
     public Course createCourse(Course course) {
-        throw new UnsupportedOperationException("Not implemented.");
+        return courseDAO.insert(course);
     }
 
     @Override

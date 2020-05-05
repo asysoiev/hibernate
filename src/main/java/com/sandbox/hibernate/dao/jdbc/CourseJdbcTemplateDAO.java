@@ -8,9 +8,12 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static org.slf4j.LoggerFactory.getLogger;
@@ -55,7 +58,14 @@ public class CourseJdbcTemplateDAO implements CourseDAO {
 
     @Override
     public Course insert(Course course) {
-        throw new UnsupportedOperationException("Not implemented.");
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
+                .withTableName("course")
+                .usingGeneratedKeyColumns("id");
+        Map<String, Object> args = new HashMap<>();
+        args.put("title", course.getTitle());
+        Long id = (Long) simpleJdbcInsert.executeAndReturnKey(args);
+        course.setId(id);
+        return course;
     }
 
     @Override
