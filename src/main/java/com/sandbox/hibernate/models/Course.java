@@ -1,12 +1,28 @@
 package com.sandbox.hibernate.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import java.util.Objects;
 
 /**
  * @author Andrii Sysoiev
  */
+@Entity
+@NamedQueries(
+        {
+                @NamedQuery(name = "Course.findAll", query = "select c from Course c"),
+                @NamedQuery(name = "Course.findByTitle", query = "select c from Course c where c.title like :title"),
+        }
+)
 public class Course {
 
+    @Id
+    @SequenceGenerator(name = "course_seq", allocationSize = 1, initialValue = 10000)
+    @GeneratedValue(generator = "course_seq")
     private Long id;
     private String title;
 
