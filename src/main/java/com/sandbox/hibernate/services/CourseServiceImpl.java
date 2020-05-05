@@ -39,13 +39,16 @@ public class CourseServiceImpl implements CourseService {
         return courseDAO.insert(course);
     }
 
+    @Transactional
     @Override
     public Course updateCourse(Course course) {
-        throw new UnsupportedOperationException("Not implemented.");
+        return courseDAO.update(course);
     }
 
+    @Transactional
     @Override
     public void deleteById(Long id) {
-        throw new UnsupportedOperationException("Not implemented.");
+        Course course = findById(id);
+        courseDAO.delete(course);
     }
 }

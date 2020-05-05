@@ -77,6 +77,41 @@ public abstract class CourseServiceTest {
         assertEquals(1, count);
     }
 
+    @DirtiesContext
+    @Test
+    void testUpdateCourse() {
+        String updatedTitle = microservicesCourseData.getTitle() + " - Updated";
+        int count = getCoursesCountByTitle(updatedTitle);
+        assertEquals(0, count);
+
+        long id = getCourseIdByTitle(microservicesCourseData.getTitle());
+        Course updatedCourse = new Course(updatedTitle)
+                .setId(id);
+        courseService.updateCourse(updatedCourse);
+
+        count = getCoursesCountByTitle(updatedTitle);
+        assertEquals(1, count);
+    }
+
+    @DirtiesContext
+    @Test
+    void testDeleteCourse() {
+        String title = microservicesCourseData.getTitle();
+        int count = getCoursesCountByTitle(title);
+        assertEquals(1, count);
+
+        long id = getCourseIdByTitle(title);
+        courseService.deleteById(id);
+
+        count = getCoursesCountByTitle(title);
+        assertEquals(0, count);
+    }
+
+    private long getCourseIdByTitle(String title) {
+        String query = "select id from course where title=?";
+        return jdbcTemplate.queryForObject(query, new Object[]{title}, Long.class);
+    }
+
     private int getCoursesCountByTitle(String title) {
         String whereClause = String.format("title=\'%s\'", title);
         return getCoursesCount(whereClause);

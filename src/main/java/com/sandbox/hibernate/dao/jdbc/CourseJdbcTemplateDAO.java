@@ -70,11 +70,18 @@ public class CourseJdbcTemplateDAO implements CourseDAO {
 
     @Override
     public Course update(Course course) {
-        throw new UnsupportedOperationException("Not implemented.");
+        jdbcTemplate.update("update course " +
+                        "set title = ? " +
+                        "where id = ?",
+                new Object[]{course.getTitle(),
+                        course.getId()});
+        return course;
     }
 
     @Override
     public void delete(Course course) {
-        throw new UnsupportedOperationException("Not implemented.");
+        Long id = course.getId();
+        int deletedRecs = jdbcTemplate.update("delete from course where id=?", new Object[]{id});
+        logger.debug("Deleted records {} by id {}", deletedRecs, id);
     }
 }
