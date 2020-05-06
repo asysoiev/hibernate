@@ -1,5 +1,6 @@
-package com.sandbox.hibernate.dao;
+package com.sandbox.hibernate.dao.jparepo;
 
+import com.sandbox.hibernate.dao.CourseDAO;
 import com.sandbox.hibernate.models.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
