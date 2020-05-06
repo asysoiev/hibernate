@@ -1,0 +1,23 @@
+package com.sandbox.hibernate.dao.jparepo;
+
+import com.sandbox.hibernate.dao.StudentDAO;
+import com.sandbox.hibernate.models.Student;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Repository;
+
+/**
+ * @author Andrii Sysoiev
+ */
+@Profile("JpaRepo")
+@Repository
+public class StudentJpaRepoDAO implements StudentDAO {
+
+    @Autowired
+    private StudentJpaRepository studentJpaRepository;
+
+    @Override
+    public Student insert(Student student) {
+        return studentJpaRepository.save(student);
+    }
+}
