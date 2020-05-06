@@ -1,6 +1,5 @@
 package com.sandbox.hibernate.services;
 
-import com.sandbox.hibernate.dao.PassportDAO;
 import com.sandbox.hibernate.dao.StudentDAO;
 import com.sandbox.hibernate.exceptions.StudentNotFoundException;
 import com.sandbox.hibernate.models.Passport;
@@ -16,9 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
-    private StudentDAO studentDAO;
+    private PassportService passportService;
+
     @Autowired
-    private PassportDAO passportDAO;
+    private StudentDAO studentDAO;
 
     @Override
     public Student findById(Long id) {
@@ -30,7 +30,7 @@ public class StudentServiceImpl implements StudentService {
     public Student createStudent(Student student) {
         Passport passport = student.getPassport();
         if (passport != null) {
-            passportDAO.insert(passport);
+            passportService.createPassport(passport);
         }
         return studentDAO.insert(student);
     }
