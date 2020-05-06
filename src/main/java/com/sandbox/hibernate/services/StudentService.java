@@ -7,5 +7,7 @@ import com.sandbox.hibernate.models.Student;
  */
 public interface StudentService {
 
+    Student findById(Long id);
+
     Student createStudent(Student student);
 }

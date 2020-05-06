@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 /**
  * @author Andrii Sysoiev
  */
@@ -15,6 +17,11 @@ public class StudentJpaRepoDAO implements StudentDAO {
 
     @Autowired
     private StudentJpaRepository studentJpaRepository;
+
+    @Override
+    public Optional<Student> findById(Long id) {
+        return studentJpaRepository.findById(id);
+    }
 
     @Override
     public Student insert(Student student) {

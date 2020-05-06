@@ -25,6 +25,16 @@ public abstract class StudentServiceTest {
     @Autowired
     private StudentService studentService;
 
+    @Test
+    void testFindById() {
+        long id = 20000L;
+
+        Student student = studentService.findById(id);
+
+        assertNotNull(student);
+        assertNotNull(student.getPassport());
+    }
+
     @DirtiesContext
     @Test
     void testCreateStudent() {
