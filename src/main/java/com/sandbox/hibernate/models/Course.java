@@ -18,6 +18,7 @@ import java.util.Objects;
                 @NamedQuery(name = "Course.findByTitle", query = "select c from Course c where c.title like :title"),
         }
 )
+//@Cacheable
 public class Course {
 
     @Id
