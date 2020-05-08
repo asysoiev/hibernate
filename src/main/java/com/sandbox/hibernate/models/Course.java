@@ -75,6 +75,10 @@ public class Course {
         this.reviews.remove(review);
     }
 
+    public void addReviews(List<Review> reviews) {
+        this.reviews.addAll(reviews);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -3,6 +3,7 @@ package com.sandbox.hibernate.services;
 import com.sandbox.hibernate.dao.CourseDAO;
 import com.sandbox.hibernate.exceptions.CourseNotFoundException;
 import com.sandbox.hibernate.models.Course;
+import com.sandbox.hibernate.models.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,5 +51,14 @@ public class CourseServiceImpl implements CourseService {
     public void deleteById(Long id) {
         Course course = findById(id);
         courseDAO.delete(course);
+    }
+
+    @Transactional
+    @Override
+    public void addReviews(Long courseId, List<Review> reviews) {
+        Course course = findById(courseId);
+        reviews.forEach(review -> review.setCourse(course));
+        course.addReviews(reviews);
+        updateCourse(course);
     }
 }

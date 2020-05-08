@@ -1,6 +1,7 @@
 package com.sandbox.hibernate.services;
 
 import com.sandbox.hibernate.models.Course;
+import com.sandbox.hibernate.models.Review;
 
 import java.util.List;
 
@@ -22,5 +23,7 @@ public interface CourseService {
     Course updateCourse(Course course);
 
     void deleteById(Long id);
+
+    void addReviews(Long courseId, List<Review> reviews);
 
 }
