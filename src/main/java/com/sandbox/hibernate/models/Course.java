@@ -5,8 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.FetchType.EAGER;
 
 /**
  * @author Andrii Sysoiev
@@ -26,12 +32,16 @@ public class Course {
     @GeneratedValue(generator = "course_seq")
     private Long id;
     private String title;
+    @OneToMany(mappedBy = "course", fetch = EAGER, cascade = ALL)
+    private final List<Review> reviews;
 
     protected Course() {
         //is used by hibernate
+        reviews = new ArrayList<>();
     }
 
     public Course(String title) {
+        this();
         this.title = title;
     }
 
@@ -51,6 +61,18 @@ public class Course {
     public Course setTitle(String title) {
         this.title = title;
         return this;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void addReview(Review review) {
+        this.reviews.add(review);
+    }
+
+    public void removeReview(Review review) {
+        this.reviews.remove(review);
     }
 
     @Override

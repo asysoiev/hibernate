@@ -27,11 +27,11 @@ import static org.springframework.test.jdbc.JdbcTestUtils.countRowsInTableWhere;
 @AutoConfigureTestDatabase
 public abstract class CourseServiceTest {
 
-    private static final Course dockerCourseData = new Course("Master Docker with Java - DevOps for Spring Microservices")
+    public static final Course dockerCourseData = new Course("Master Docker with Java - DevOps for Spring Microservices")
             .setId(10000L);
-    private static final Course hibernateCourseData = new Course("Master Hibernate and JPA with Spring Boot in 100 Steps")
+    public static final Course hibernateCourseData = new Course("Master Hibernate and JPA with Spring Boot in 100 Steps")
             .setId(10001L);
-    private static final Course microservicesCourseData = new Course("Master Microservices with Spring Boot and Spring Cloud")
+    public static final Course microservicesCourseData = new Course("Master Microservices with Spring Boot and Spring Cloud")
             .setId(10002L);
     @Autowired
     private CourseService courseService;

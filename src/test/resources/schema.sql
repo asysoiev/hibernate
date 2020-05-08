@@ -9,6 +9,19 @@ create table course
     title     varchar(255) not null
 );
 
+create sequence review_seq
+START WITH 30000
+INCREMENT BY 1
+;
+
+create table review
+(
+    id          long            not null default review_seq.nextval,
+    rate        number          not null,
+    comment     varchar(255)    not null,
+    course_id   long            not null  references course(id)
+);
+
 create sequence passport_seq
 START WITH 40000
 INCREMENT BY 1
