@@ -2,8 +2,11 @@ package com.sandbox.hibernate.services;
 
 import com.sandbox.hibernate.models.Course;
 import com.sandbox.hibernate.models.Review;
+import com.sandbox.hibernate.models.Student;
 
 import java.util.List;
+
+import static java.util.Arrays.asList;
 
 /**
  * @author Andrii Sysoiev
@@ -26,4 +29,9 @@ public interface CourseService {
 
     void addReviews(Long courseId, List<Review> reviews);
 
+    default void addStudents(Long courseId, Student... students) {
+        addStudents(courseId, asList(students));
+    }
+
+    void addStudents(Long courseId, List<Student> student);
 }

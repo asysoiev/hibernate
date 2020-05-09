@@ -73,4 +73,12 @@ public class Student {
     public void addCourses(List<Course> courses) {
         this.courses.addAll(courses);
     }
+
+    public void addCourse(Course course) {
+        courses.add(course);
+    }
+
+    public void removeCourses(List<Course> courses) {
+        this.courses.removeAll(courses);
+    }
 }
