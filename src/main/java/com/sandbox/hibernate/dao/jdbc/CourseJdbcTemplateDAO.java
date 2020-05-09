@@ -83,6 +83,8 @@ public class CourseJdbcTemplateDAO implements CourseDAO {
         Long id = course.getId();
         int deletedRecs = jdbcTemplate.update("delete from review where course_id=?", new Object[]{id});
         logger.debug("Deleted review records {} by course_id {}", deletedRecs, id);
+        deletedRecs = jdbcTemplate.update("delete from course_student where course_id=?", new Object[]{id});
+        logger.debug("Deleted course_student records {} by id {}", deletedRecs, id);
         deletedRecs = jdbcTemplate.update("delete from course where id=?", new Object[]{id});
         logger.debug("Deleted course records {} by id {}", deletedRecs, id);
     }

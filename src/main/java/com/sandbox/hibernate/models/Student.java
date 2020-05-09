@@ -3,8 +3,11 @@ package com.sandbox.hibernate.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Andrii Sysoiev
@@ -20,6 +23,12 @@ public class Student {
     private String surname;
     @OneToOne
     private Passport passport;
+    @ManyToMany(mappedBy = "students")
+    private final List<Course> courses;
+
+    public Student() {
+        courses = new ArrayList<>();
+    }
 
     public Long getId() {
         return id;
@@ -55,5 +64,13 @@ public class Student {
     public Student setPassport(Passport passport) {
         this.passport = passport;
         return this;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void addCourses(List<Course> courses) {
+        this.courses.addAll(courses);
     }
 }

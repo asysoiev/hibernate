@@ -3,6 +3,9 @@ package com.sandbox.hibernate.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -34,10 +37,16 @@ public class Course {
     private String title;
     @OneToMany(mappedBy = "course", fetch = EAGER, cascade = ALL)
     private final List<Review> reviews;
+    @ManyToMany
+    @JoinTable(name = "course_student",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id"))
+    private final List<Student> students;
 
     protected Course() {
         //is used by hibernate
         reviews = new ArrayList<>();
+        students = new ArrayList<>();
     }
 
     public Course(String title) {
@@ -77,6 +86,14 @@ public class Course {
 
     public void addReviews(List<Review> reviews) {
         this.reviews.addAll(reviews);
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void addStudents(List<Student> students) {
+        this.students.addAll(students);
     }
 
     @Override

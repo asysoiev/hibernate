@@ -1,11 +1,16 @@
 package com.sandbox.hibernate.services;
 
+import com.sandbox.hibernate.models.Course;
 import com.sandbox.hibernate.models.Passport;
 import com.sandbox.hibernate.models.Student;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
@@ -16,6 +21,7 @@ public abstract class StudentServiceTest extends BaseServiceTest {
     @Autowired
     private StudentService studentService;
 
+    @Transactional//to wrap studentService.findById, student.getCourses by one session
     @Test
     void testFindById() {
         long id = 20000L;
@@ -24,6 +30,9 @@ public abstract class StudentServiceTest extends BaseServiceTest {
 
         assertNotNull(student);
         assertNotNull(student.getPassport());
+        List<Course> courses = student.getCourses();
+        assertNotNull(courses);
+        assertEquals(2, courses.size());
     }
 
     @DirtiesContext

@@ -45,3 +45,9 @@ create table student
     surname   varchar(255) not null,
     passport_id   long references passport(id)
 );
+
+create table course_student
+(
+    course_id       long    references course(id),
+    student_id      long    references student(id)
+);
