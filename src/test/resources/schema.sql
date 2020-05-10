@@ -51,3 +51,18 @@ create table course_student
     course_id       long    references course(id),
     student_id      long    references student(id)
 );
+
+create sequence employee_seq
+START WITH 60000
+INCREMENT BY 1
+;
+
+-- single table strategy
+create table employee
+(
+    id              long         not null default employee_seq.nextval,
+    name            varchar(255) not null,
+    employee_type   enum('FULL_TIME', 'PART_TIME'),
+    salary          decimal(20, 2),
+    hourly_wage     decimal(20, 2)
+);

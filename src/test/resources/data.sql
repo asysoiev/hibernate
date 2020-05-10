@@ -37,3 +37,9 @@ values (select id from course where title = 'Master Microservices with Spring Bo
 insert into course_student(course_id, student_id)
 values (select id from course where title = 'Master Docker with Java - DevOps for Spring Microservices',
         select id from student where name = 'Bohdan');
+
+-- single table strategy
+insert into employee(name, employee_type, salary)
+values ('Vladimir', 'FULL_TIME', '10000');
+insert into employee(name, employee_type, hourly_wage)
+values ('Bohdan', 'PART_TIME', '50');
