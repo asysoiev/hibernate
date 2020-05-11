@@ -14,11 +14,13 @@ import static java.util.Arrays.asList;
 public interface CourseService {
 
 
-    List<Course> findAll();
+    List<Course> getAll();
 
     Course findById(Long id);
 
     List<Course> findByTitle(String title);
+
+    List<Course> getCoursesWithoutStudents();
 
 
     Course createCourse(Course course);

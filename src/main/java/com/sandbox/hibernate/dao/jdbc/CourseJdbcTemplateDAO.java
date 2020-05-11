@@ -31,7 +31,7 @@ public class CourseJdbcTemplateDAO implements CourseDAO {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Course> findAll() {
+    public List<Course> getAll() {
         return jdbcTemplate.query("select * from course", new BeanPropertyRowMapper<>(Course.class));
     }
 
@@ -54,6 +54,11 @@ public class CourseJdbcTemplateDAO implements CourseDAO {
         return jdbcTemplate.query("select * from course where title like ?",
                 new Object[]{likeWrappedTitle},
                 new BeanPropertyRowMapper<>(Course.class));
+    }
+
+    @Override
+    public List<Course> getCoursesWithoutStudents() {
+        return jdbcTemplate.query("select c.* from course c where c.id not in (select course_id from course_student)", new BeanPropertyRowMapper<>(Course.class));
     }
 
     @Override

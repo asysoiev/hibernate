@@ -24,8 +24,8 @@ public class CourseJpaEmDAO implements CourseDAO {
     private EntityManager entityManager;
 
     @Override
-    public List<Course> findAll() {
-        TypedQuery<Course> query = entityManager.createNamedQuery("Course.findAll", Course.class);
+    public List<Course> getAll() {
+        TypedQuery<Course> query = entityManager.createNamedQuery("Course.getAll", Course.class);
         return query.getResultList();
     }
 
@@ -39,6 +39,12 @@ public class CourseJpaEmDAO implements CourseDAO {
         String likeWrappedTitle = "%" + title + "%";
         TypedQuery<Course> query = entityManager.createNamedQuery("Course.findByTitle", Course.class);
         query.setParameter("title", likeWrappedTitle);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Course> getCoursesWithoutStudents() {
+        TypedQuery<Course> query = entityManager.createNamedQuery("Course.getWithoutStudents", Course.class);
         return query.getResultList();
     }
 

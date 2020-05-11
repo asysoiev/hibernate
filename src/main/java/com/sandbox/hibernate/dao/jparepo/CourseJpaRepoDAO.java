@@ -19,7 +19,7 @@ public class CourseJpaRepoDAO implements CourseDAO {
     private CourseJpaRepository courseJpaRepository;
 
     @Override
-    public List<Course> findAll() {
+    public List<Course> getAll() {
         return courseJpaRepository.findAll();
     }
 
@@ -31,6 +31,11 @@ public class CourseJpaRepoDAO implements CourseDAO {
     @Override
     public List<Course> findByTitle(String title) {
         return courseJpaRepository.findByTitleContains(title);
+    }
+
+    @Override
+    public List<Course> getCoursesWithoutStudents() {
+        return courseJpaRepository.getCoursesWithoutStudents();
     }
 
     @Override

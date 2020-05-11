@@ -20,10 +20,10 @@ public abstract class CourseServiceTest extends BaseServiceTest {
     private CourseService courseService;
 
     @Test
-    void testFindAll() {
-        List<Course> result = courseService.findAll();
+    void testAllCourses() {
+        List<Course> result = courseService.getAll();
         assertNotNull(result);
-        assertEquals(3, result.size());
+        assertEquals(4, result.size());
     }
 
     @Test
@@ -40,6 +40,13 @@ public abstract class CourseServiceTest extends BaseServiceTest {
         assertEquals(2, result.size());
         assertTrue(result.contains(hibernateCourseData));
         assertTrue(result.contains(microservicesCourseData));
+    }
+
+    @Test
+    void testFindCoursesWithoutStudents() {
+        List<Course> result = courseService.getCoursesWithoutStudents();
+        assertNotNull(result);
+        assertEquals(1, result.size());
     }
 
     @DirtiesContext

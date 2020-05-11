@@ -10,11 +10,13 @@ import java.util.Optional;
  */
 public interface CourseDAO {
 
-    List<Course> findAll();
+    List<Course> getAll();
 
     Optional<Course> findById(Long id);
 
     List<Course> findByTitle(String title);
+
+    List<Course> getCoursesWithoutStudents();
 
 
     Course insert(Course course);

@@ -21,8 +21,8 @@ public class CourseServiceImpl implements CourseService {
     private CourseDAO courseDAO;
 
     @Override
-    public List<Course> findAll() {
-        return courseDAO.findAll();
+    public List<Course> getAll() {
+        return courseDAO.getAll();
     }
 
     @Override
@@ -33,6 +33,11 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public List<Course> findByTitle(String title) {
         return courseDAO.findByTitle(title);
+    }
+
+    @Override
+    public List<Course> getCoursesWithoutStudents() {
+        return courseDAO.getCoursesWithoutStudents();
     }
 
     @Transactional

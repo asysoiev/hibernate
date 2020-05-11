@@ -4,6 +4,8 @@ insert into course(title)
 values ('Master Hibernate and JPA with Spring Boot in 100 Steps');
 insert into course(title)
 values ('Master Microservices with Spring Boot and Spring Cloud');
+insert into course(title)
+values ('Java Application Performance and Memory Management');
 
 insert into review(rate, comment, course_id)
 values (4, 'Sometimes boring and harmful style of examples.',
