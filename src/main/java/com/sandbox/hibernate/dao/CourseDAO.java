@@ -18,11 +18,12 @@ public interface CourseDAO {
 
     List<Course> getCoursesWithoutStudents();
 
+    List<Course> getCoursesWithAtLeastStudents(int studentsCount);
+
 
     Course insert(Course course);
 
     Course update(Course course);
 
     void delete(Course course);
-
 }

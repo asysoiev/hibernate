@@ -39,6 +39,11 @@ public class CourseJpaRepoDAO implements CourseDAO {
     }
 
     @Override
+    public List<Course> getCoursesWithAtLeastStudents(int studentsCount) {
+        return courseJpaRepository.getCoursesWithAtLeastStudents(studentsCount);
+    }
+
+    @Override
     public Course insert(Course course) {
         return courseJpaRepository.save(course);
     }

@@ -40,6 +40,11 @@ public class CourseServiceImpl implements CourseService {
         return courseDAO.getCoursesWithoutStudents();
     }
 
+    @Override
+    public List<Course> getCoursesWithAtLeastStudents(int studentsCount) {
+        return courseDAO.getCoursesWithAtLeastStudents(studentsCount);
+    }
+
     @Transactional
     @Override
     public Course createCourse(Course course) {

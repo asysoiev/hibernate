@@ -49,6 +49,13 @@ public class CourseJpaEmDAO implements CourseDAO {
     }
 
     @Override
+    public List<Course> getCoursesWithAtLeastStudents(int studentsCount) {
+        TypedQuery<Course> query = entityManager.createQuery("select c from Course c where size(c.students) >= :studentsCount", Course.class);
+        query.setParameter("studentsCount", studentsCount);
+        return query.getResultList();
+    }
+
+    @Override
     public Course insert(Course course) {
         entityManager.persist(course);
         return course;

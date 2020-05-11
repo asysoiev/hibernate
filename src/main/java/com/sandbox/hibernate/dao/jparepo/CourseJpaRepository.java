@@ -4,6 +4,7 @@ import com.sandbox.hibernate.models.Course;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,4 +20,7 @@ public interface CourseJpaRepository extends JpaRepository<Course, Long> {
 
     @Query("select c from Course c where c.students is empty")
     List<Course> getCoursesWithoutStudents();
+
+    @Query("select c from Course c where size(c.students) >= :studentsCount")
+    List<Course> getCoursesWithAtLeastStudents(@Param("studentsCount") int studentsCount);
 }

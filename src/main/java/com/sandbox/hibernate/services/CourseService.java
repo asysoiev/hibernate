@@ -36,4 +36,6 @@ public interface CourseService {
     }
 
     void addStudents(Long courseId, List<Student> student);
+
+    List<Course> getCoursesWithAtLeastStudents(int studentsCount);
 }

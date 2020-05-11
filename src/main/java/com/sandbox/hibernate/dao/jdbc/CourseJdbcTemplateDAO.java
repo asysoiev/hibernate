@@ -62,6 +62,14 @@ public class CourseJdbcTemplateDAO implements CourseDAO {
     }
 
     @Override
+    public List<Course> getCoursesWithAtLeastStudents(int studentsCount) {
+        return jdbcTemplate.query("select c.* from course c " +
+                        "where c.id in (select course_id from course_student group by course_id having count(course_id) >= ?)",
+                new Object[]{studentsCount},
+                new BeanPropertyRowMapper<>(Course.class));
+    }
+
+    @Override
     public Course insert(Course course) {
         SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName("course")

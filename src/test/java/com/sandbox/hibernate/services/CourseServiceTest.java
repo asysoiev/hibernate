@@ -49,6 +49,13 @@ public abstract class CourseServiceTest extends BaseServiceTest {
         assertEquals(1, result.size());
     }
 
+    @Test
+    void testFindCoursesWithAtLeast2Students() {
+        List<Course> result = courseService.getCoursesWithAtLeastStudents(2);
+        assertNotNull(result);
+        assertEquals(1, result.size());
+    }
+
     @DirtiesContext
     @Test
     void testCreateCourse() {
