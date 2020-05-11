@@ -63,4 +63,9 @@ public class StudentServiceImpl implements StudentService {
         }
         return insertedStudent;
     }
+
+    @Override
+    public List<Student> findByPassportNumber(String pattern) {
+        return studentDAO.findByPassportNumber(pattern);
+    }
 }

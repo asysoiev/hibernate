@@ -19,7 +19,7 @@ values (5, 'Good introduction into Spring Microservices World.',
 
 insert into passport(number) values ('A1234567');
 insert into passport(number) values ('A1234568');
-insert into passport(number) values ('A1234569');
+insert into passport(number) values ('A1230569');
 insert into student(name, surname, passport_id)
 values ('Vladimir', 'Rurik', select id from passport where number = 'A1234567');
 insert into student(name, surname, passport_id)

@@ -35,6 +35,16 @@ public abstract class StudentServiceTest extends BaseServiceTest {
         assertEquals(2, courses.size());
     }
 
+    @Test
+    void testFindByPassportNumberPattern() {
+        String pattern = "1234";
+
+        List<Student> students = studentService.findByPassportNumber(pattern);
+
+        assertNotNull(students);
+        assertEquals(2, students.size());
+    }
+
     @DirtiesContext
     @Test
     void testCreateStudent() {

@@ -5,6 +5,7 @@ import com.sandbox.hibernate.models.Student;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -15,6 +16,11 @@ import java.util.Optional;
 public class StudentJdbcTemplateDAO implements StudentDAO {
     @Override
     public Optional<Student> findById(Long id) {
+        throw new UnsupportedOperationException("Not implemented.");
+    }
+
+    @Override
+    public List<Student> findByPassportNumber(String pattern) {
         throw new UnsupportedOperationException("Not implemented.");
     }
 

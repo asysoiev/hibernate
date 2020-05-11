@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -21,6 +22,11 @@ public class StudentJpaRepoDAO implements StudentDAO {
     @Override
     public Optional<Student> findById(Long id) {
         return studentJpaRepository.findById(id);
+    }
+
+    @Override
+    public List<Student> findByPassportNumber(String pattern) {
+        return studentJpaRepository.findByPassportNumberContains(pattern);
     }
 
     @Override
