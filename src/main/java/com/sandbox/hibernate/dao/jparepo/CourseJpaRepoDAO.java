@@ -4,6 +4,7 @@ import com.sandbox.hibernate.dao.CourseDAO;
 import com.sandbox.hibernate.models.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,7 +21,8 @@ public class CourseJpaRepoDAO implements CourseDAO {
 
     @Override
     public List<Course> getAll() {
-        return courseJpaRepository.findAll();
+        Sort sort = Sort.by("title");
+        return courseJpaRepository.findAll(sort);
     }
 
     @Override

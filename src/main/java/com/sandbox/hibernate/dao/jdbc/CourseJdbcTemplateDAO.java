@@ -32,7 +32,7 @@ public class CourseJdbcTemplateDAO implements CourseDAO {
 
     @Override
     public List<Course> getAll() {
-        return jdbcTemplate.query("select * from course", new BeanPropertyRowMapper<>(Course.class));
+        return jdbcTemplate.query("select * from course order by title", new BeanPropertyRowMapper<>(Course.class));
     }
 
     @Override

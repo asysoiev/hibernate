@@ -13,7 +13,9 @@ import static java.util.Arrays.asList;
  */
 public interface CourseService {
 
-
+    /**
+     * @return all courses ascending ordered by title.
+     */
     List<Course> getAll();
 
     Course findById(Long id);

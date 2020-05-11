@@ -26,6 +26,8 @@ public abstract class BaseServiceTest {
             .setId(10001L);
     protected static final Course microservicesCourseData = new Course("Master Microservices with Spring Boot and Spring Cloud")
             .setId(10002L);
+    protected static final Course performanceCourseData = new Course("Java Application Performance and Memory Management")
+            .setId(10003L);
     @Autowired
     protected JdbcTemplate jdbcTemplate;
 

@@ -24,6 +24,10 @@ public abstract class CourseServiceTest extends BaseServiceTest {
         List<Course> result = courseService.getAll();
         assertNotNull(result);
         assertEquals(4, result.size());
+        assertEquals(performanceCourseData.getTitle(), result.get(0).getTitle());
+        assertEquals(dockerCourseData.getTitle(), result.get(1).getTitle());
+        assertEquals(hibernateCourseData.getTitle(), result.get(2).getTitle());
+        assertEquals(microservicesCourseData.getTitle(), result.get(3).getTitle());
     }
 
     @Test

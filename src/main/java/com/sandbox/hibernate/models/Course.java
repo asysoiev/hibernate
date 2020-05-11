@@ -23,7 +23,7 @@ import static javax.persistence.FetchType.EAGER;
 @Entity
 @NamedQueries(
         {
-                @NamedQuery(name = "Course.getAll", query = "select c from Course c"),
+                @NamedQuery(name = "Course.getAll", query = "select c from Course c order by c.title"),
                 @NamedQuery(name = "Course.findByTitle", query = "select c from Course c where c.title like :title"),
                 @NamedQuery(name = "Course.getWithoutStudents", query = "select c from Course c where c.students is empty"),
         }
