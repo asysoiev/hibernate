@@ -1,5 +1,7 @@
 package com.sandbox.hibernate.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,6 +19,7 @@ public class Passport {
     @GeneratedValue(generator = "passport_seq")
     private Long id;
     private String number;
+    @JsonIgnore
     @OneToOne(mappedBy = "passport")
     private Student student;
 

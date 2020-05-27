@@ -1,5 +1,7 @@
 package com.sandbox.hibernate.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -23,6 +25,7 @@ public class Student {
     private String surname;
     @OneToOne
     private Passport passport;
+    @JsonIgnore
     @ManyToMany(mappedBy = "students")
     private final List<Course> courses;
 
