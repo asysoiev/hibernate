@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,8 +22,18 @@ public class CourseJpaRepoDAO implements CourseDAO {
 
     @Override
     public List<Course> getAll() {
+        List<Course> result = new ArrayList<>();
         Sort sort = Sort.by("title");
-        return courseJpaRepository.findAll(sort);
+        result.addAll(courseJpaRepository.findAll(sort));
+//        PageRequest pageRequest = PageRequest.of(0, 3, sort);
+//        Page<Course> page = courseJpaRepository.findAll(pageRequest);
+//        result.addAll(page.getContent());
+//        while (page.hasNext()){
+//            Pageable pageable = page.nextPageable();
+//            page = courseJpaRepository.findAll(pageable);
+//            result.addAll(page.getContent());
+//        }
+        return result;
     }
 
     @Override
